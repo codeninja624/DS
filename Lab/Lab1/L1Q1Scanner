@@ -1,0 +1,30 @@
+package L1Q1;
+
+import java.io.*;
+import java.util.Scanner;
+
+public class L1Q1Scanner {
+    public static void main(String[] args) throws IOException {
+        String path="letter one";
+        print(path);
+        Scanner scanner=new Scanner(System.in);
+        PrintWriter printWriter=new PrintWriter(new FileOutputStream(path,true));
+        while (scanner.hasNextLine()){
+           printWriter.println(scanner.nextLine());// ctrl+d stop input
+        }
+        printWriter.close();
+        print(path);
+    }
+
+    public static void print(String path){
+        try{
+            Scanner scanner=new Scanner(new FileInputStream(path));
+            while(scanner.hasNextLine()){
+                System.out.println(scanner.nextLine());
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
