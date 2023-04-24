@@ -1,8 +1,8 @@
-package L5Q2;
+package SList;
 
-public class SNode <E>{
-    E element;
-    SNode<E>next;
+public class SNode<E> {
+    public SNode<E> next;
+    public E element;
 
     public SNode() {
     }
@@ -10,4 +10,5 @@ public class SNode <E>{
     public SNode(E element) {
         this.element = element;
     }
+
 }

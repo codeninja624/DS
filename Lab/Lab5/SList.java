@@ -1,4 +1,4 @@
-package L5Q2;
+package SList;
 
 public class SList<E> {
     private SNode<E> head;
@@ -14,64 +14,48 @@ public class SList<E> {
         this.size = size;
     }
 
-    public void add(E e) {
+    public void appendEnd(E e) {
         if (tail == null) {
-            head=tail = new SNode<>(e);
+            head = tail = new SNode<E>(e);
         } else {
-            SNode<E> temp = new SNode<>(e);
-            tail.next = temp;
+            SNode<E> current = new SNode<>(e);
+            tail.next = current;
             tail = tail.next;
         }
         size++;
     }
 
-    public void removeElement(E e) {
-        SNode<E> current ;
-        if (head.element.equals(e)) {
-            current=head;
-            head = head.next;
+    public E removeInitial() {
+        if (size == 0) {
+            return null;
         } else {
-            SNode<E> previous = head;
-            while (!previous.next.element.equals(e)) {
-                previous = previous.next;
+            SNode<E> current = head;
+            head = head.next;
+            if (head == null) {
+                tail = null;
             }
-            current = previous.next;
-            previous.next = current.next;
-        }
-        size--;
-        System.out.println(current.element);
-    }
-
-    public void printList() {
-        SNode<E> current = head;
-        while (current != null) {
-            System.out.println(current.element);
-            current = current.next;
+            size--;
+            return current.element;
         }
     }
-
-    public int getSize() {
-        return size;
-    }
-
-    public boolean contains(E e) {
-        SNode<E> current = head;
-        while (current!=null){
-            if (e.equals(current.element)) {
+    public boolean contains(E e){
+        SNode<E>current=head;
+        for (int i = 0; i < size; i++) {
+            if(e.equals(current.element)){
                 return true;
             }
-            current = current.next;
         }
         return false;
     }
-
-    public void replace(E e, E newE) {
-        SNode<E> current = head;
-            while (!e.equals(current.element)) {
-                current=current.next;
-
-            }
-            current.element=newE;
+    public void clear(){
+        head=null;
+        tail=null;
+    }
+    public void display(){
+        SNode<E>current=head;
+        while(current!=null){
+            System.out.print(current.element+" ");
+            current=current.next;
         }
     }
-
+}
